@@ -1,0 +1,32 @@
+{
+    "name": "Rust Wasm Runtime Dev",
+    // 1. Start with the official Rust dev container image
+    "image": "mcr.microsoft.com/devcontainers/rust:latest",
+    "features": {
+        // 2. Add the Wasmtime/WASI feature for your CLI and server
+        "devwasm.azurecr.io/dev-wasm/dev-wasm-feature/wasmtime-wasi:0.0.4": {
+            "version": "latest"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            // 3. Add the essential VS Code extensions
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml"
+            ]
+        }
+    },
+    // 4. Run commands *after* the container is created
+    "postCreateCommand": "cargo install wasm-pack",
+    // 5. Forward the port for your web server
+    "forwardPorts": [
+        3000
+    ],
+    "portsAttributes": {
+        "3000": {
+            "label": "Web Server",
+            "onAutoForward": "openBrowser"
+        }
+    }
+}
