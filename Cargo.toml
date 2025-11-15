@@ -1,0 +1,5 @@
+[workspace]
+members = ["browser-lib", "cli", "server", "smol"]
+
+# Use a modern dependency resolver
+resolver = "2"
